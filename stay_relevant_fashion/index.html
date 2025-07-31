@@ -1,1 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Éclat Noir - Luxury fashion boutique offering exclusive high-end clothing collections. Discover our premium brand with timeless elegance and modern sophistication.">
+    <meta name="keywords" content="luxury fashion, high-end clothing, boutique brand, designer wear, premium apparel, black gold fashion">
+    <meta name="author" content="Éclat Noir">
+    <meta property="og:title" content="Éclat Noir | Luxury Fashion Boutique">
+    <meta property="og:description" content="Discover our exclusive high-end clothing collections with timeless elegance.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eclatnoir.com">
+    <meta property="og:image" content="https://eclatnoir.com/images/social-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>Stay Relevant | Luxury Fashion Boutique</title>
+    
+    <!-- Preload fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kiona:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kiona:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fff9e6',
+                            100: '#ffefb3',
+                            200: '#ffe680',
+                            300: '#ffdc4d',
+                            400: '#ffd21a',
+                            500: '#e6b800',
+                            600: '#b38f00',
+                            700: '#806600',
+                            800: '#4d3d00',
+                            900: '#1a1400',
+                        },
+                        primary: '#000000',
+                        secondary: '#e6b800',
+                    },
+                    fontFamily: {
+                        kiona: ['Kiona', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome for premium icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e6b800;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b38f00;
+        }
+        
+        /* Custom styles */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .collection-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: #e6b800;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #e6b800;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Hamburger menu animation */
+        .hamburger div {
+            transition: all 0.3s ease;
+        }
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        /* Product card hover effect */
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(230, 184, 0, 0.3);
+        }
+        
+        /* Music player */
+        .music-player {
+            transition: all 0.3s ease;
+        }
+        .music-player:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-primary text-white font-poppins overflow-x-hidden">
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-primary transition-opacity duration-500">
+        <div class="text-center">
+            <div class="w-20 h-20 border-4 border-gold-500 border-t-transparent rounded-full animate-spin mb-4 mx-auto"></div>
+            <h2 class="text-2xl font-kiona text-gold-500 animate-pulse">STAY RELEVANT</h2>
+            <p class="text-gold-200 mt-2">Loading luxury experience...</p>
+        </div>
+    </div>
 
+    <!-- Music Player -->
+    <div class="music-player fixed bottom-4 right-4 z-40 bg-black bg-opacity-80 p-3 rounded-full shadow-lg cursor-pointer group" onclick="toggleMusic()">
+        <i id="music-icon" class="fas fa-music text-gold-500 text-xl group-hover:text-gold-300"></i>
+        <audio id="bg-music" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-30 bg-black bg-opacity-90 backdrop-filter backdrop-blur-sm py-4 px-6 shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-kiona text-gold-500 hover:text-gold-300 transition-colors duration-300">STAY RELEVANT FASHION</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-white hover:text-gold-500">Home</a>
+                <a href="#collections" class="nav-link text-white hover:text-gold-500">Collections</a>
+                <a href="#about" class="nav-link text-white hover:text-gold-500">About</a>
+                <a href="#products" class="nav-link text-white hover:text-gold-500">Shop</a>
+                <a href="#contact" class="nav-link text-white hover:text-gold-500">Contact</a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button id="menu-btn" class="hamburger focus:outline-none">
+                    <div class="w-6 h-0.5 bg-gold-500 mb-1.5"></div>
+                    <div class="w-6 h-0.5 bg-gold-500 mb-1.5"></div>
+                    <div class="w-6 h-0.5 bg-gold-500"></div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 right-0 bg-black bg-opacity-95 backdrop-filter backdrop-blur-sm py-4 px-6 shadow-lg transform origin-top transition-all duration-300 ease-out">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="nav-link text-white hover:text-gold-500 block py-2">Home</a>
+                <a href="#collections" class="nav-link text-white hover:text-gold-500 block py-2">Collections</a>
+                <a href="#about" class="nav-link text-white hover:text-gold-500 block py-2">About</a>
+                <a href="#products" class="nav-link text-white hover:text-gold-500 block py-2">Shop</a>
+                <a href="#contact" class="nav-link text-white hover:text-gold-500 block py-2">Contact</a>
+                <div class="flex space-x-4 pt-4">
+                    <a href="#" class="social-icon text-white hover:text-gold-500"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="social-icon text-white hover:text-gold-500"><i class="fab fa-facebook-f text-xl"></i></a>
+                    <a href="#" class="social-icon text-white hover:text-gold-500"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="social-icon text-white hover:text-gold-500"><i class="fab fa-pinterest-p text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 py-20 text-center" data-aos="fade-up">
+            <h1 class="text-5xl md:text-7xl font-kiona mb-6 text-gold-500">TIMELESS ELEGANCE</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10">Discover our exclusive collection of luxury fashion that blends modern sophistication with classic charm.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#products" class="bg-gold-500 hover:bg-gold-600 text-black font-semibold py-3 px-8 rounded-sm transition-all duration-300 transform hover:scale-105">SHOP NOW</a>
+                <a href="#collections" class="border border-gold-500 hover:bg-gold-500 hover:bg-opacity-20 text-gold-500 font-semibold py-3 px-8 rounded-sm transition-all duration-300 transform hover:scale-105">VIEW COLLECTIONS</a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#collections" class="text-gold-500">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section id="collections" class="collection-bg py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-kiona text-gold-500 mb-4">OUR COLLECTIONS</h2>
+                <div class="w-20 h-0.5 bg-gold-500 mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto">Each collection tells a unique story, crafted with precision and designed for those who appreciate the finer things in life.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Collection 1 -->
+                <div class="relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                    <img src="images\noiressence.jpg" alt="Noir Essence Collection" class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="text-center p-6">
+                            <h3 class="text-2xl font-kiona text-gold-500 mb-2">NOIR ESSENCE</h3>
+                            <p class="mb-4">The purest expression of black elegance</p>
+                            <a href="#" class="inline-block border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-black py-2 px-6 transition-colors duration-300">EXPLORE</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collection 2 -->
+                <div class="relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <img src="images\goldhour.jpg" alt="Golden Hour Collection" class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="text-center p-6">
+                            <h3 class="text-2xl font-kiona text-gold-500 mb-2">GOLDEN HOUR</h3>
+                            <p class="mb-4">Where light meets luxury in perfect harmony</p>
+                            <a href="#" class="inline-block border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-black py-2 px-6 transition-colors duration-300">EXPLORE</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collection 3 -->
+                <div class="relative overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
+                    <img src="images\Monochrome.jpg" alt="Monochrome Symphony Collection" class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="text-center p-6">
+                            <h3 class="text-2xl font-kiona text-gold-500 mb-2">MONOCHROME SYMPHONY</h3>
+                            <p class="mb-4">A harmonious blend of contrasts</p>
+                            <a href="#" class="inline-block border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-black py-2 px-6 transition-colors duration-300">EXPLORE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Éclat Noir Boutique" class="w-full h-auto rounded-sm shadow-xl">
+                </div>
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <h2 class="text-3xl md:text-4xl font-kiona text-gold-500 mb-6">OUR STORY</h2>
+                    <div class="w-20 h-0.5 bg-gold-500 mb-6"></div>
+                    <p class="mb-4">Founded in 2020, Stay Relevant Fashion emerged from a passion for timeless elegance and uncompromising quality. Our name reflects our commitment to sophistication with a bold edge.</p>
+                    <p class="mb-4">Every piece in our collection is meticulously crafted by skilled artisans who share our vision for perfection. We source only the finest materials from around the world to ensure each garment meets our exacting standards.</p>
+                    <p class="mb-6">More than just a fashion brand, Stay Relevant Fashion is a lifestyle. One that celebrates individuality, confidence, and the art of dressing well, and shows the world the best part of you.</p>
+                    <a href="#" class="inline-block border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-black py-2 px-8 transition-colors duration-300">LEARN MORE</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-kiona text-gold-500 mb-4">CURATED SELECTION</h2>
+                <div class="w-20 h-0.5 bg-gold-500 mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto">Discover our signature pieces that define the Stay Relevant Fashion aesthetic.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-black p-6 rounded-sm shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative overflow-hidden mb-4 group">
+                        <img src="images\silk.jpg" alt="Silk Noir Dress" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-gold-500 hover:bg-gold-600 text-black font-semibold py-2 px-6 rounded-sm transition-colors duration-300">QUICK VIEW</button>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-1">Silk Noir Dress</h3>
+                    <p class="text-gold-500 mb-3">N55,290</p>
+                    <button class="w-full bg-gold-500 hover:bg-gold-600 text-black font-semibold py-2 rounded-sm transition-colors duration-300">ADD TO CART</button>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-black p-6 rounded-sm shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative overflow-hidden mb-4 group">
+                        <img src="images\A Cultural Fashion Statement.jpg" alt="Gilded Blazer" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-gold-500 hover:bg-gold-600 text-black font-semibold py-2 px-6 rounded-sm transition-colors duration-300">QUICK VIEW</button>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-1">Gilded Blazer</h3>
+                    <p class="text-gold-500 mb-3">N60,850</p>
+                    <button class="w-full bg-gold-500 hover:bg-gold-600 text-black font-semibold py-2 rounded-sm transition-colors duration-300">ADD TO CART</button>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-black p-6 rounded-sm shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative overflow-hidden mb-4 group">
+                        <img src="images\obsidian.jpg" alt="Obsidian Trousers" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-gold-500 hover:bg-gold-600 text-black font-semibold py-2 px-6 rounded-sm transition-colors duration-300">QUICK VIEW</button>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-1">Obsidian Trousers</h3>
+                    <p class="text-gold-500 mb-3">N15,000</p>
+                    <button class="w-full bg-gold-500 hover:bg-gold-600 text-black font-semibold py-2 rounded-sm transition-colors duration-300">ADD TO CART</button>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-black p-6 rounded-sm shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative overflow-hidden mb-4 group">
+                        <img src="images\goldentop.jpg" alt="Luxe Gold Top" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-gold-500 hover:bg-gold-600 text-black font-semibold py-2 px-6 rounded-sm transition-colors duration-300">QUICK VIEW</button>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-1">Luxe Gold Top</h3>
+                    <p class="text-gold-500 mb-3">N37,000</p>
+                    <button class="w-full bg-gold-500 hover:bg-gold-600 text-black font-semibold py-2 rounded-sm transition-colors duration-300">ADD TO CART</button>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="#" class="inline-block border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-black py-3 px-10 transition-colors duration-300">VIEW ALL PRODUCTS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-kiona text-gold-500 mb-4">CLIENT ELEGANCE</h2>
+                <div class="w-20 h-0.5 bg-gold-500 mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto">What our discerning clients say about the Stay Relevant Fashion experience.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-primary p-8 rounded-sm" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-gold-500 mr-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="mb-6 italic">"The craftsmanship of my Stay Relevant blazer is unparalleled. I receive compliments every time I wear it. Worth every penny for the quality and exclusivity."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="images\blackwoman.jpg" alt="Sophia Richardson" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Sophia Agu</h4>
+                            <p class="text-sm text-gray-400">Loyal Client Since 2015</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-primary p-8 rounded-sm" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-gold-500 mr-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="mb-6 italic">"As someone who values both style and sustainability, I appreciate Stay Relevant Fashion's commitment to ethical production without compromising on luxury. They have really helped me step up my game. "</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="images\baltazar.jpg" alt="James Wellington" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Baltazar Engonga</h4>
+                            <p class="text-sm text-gray-400">Public Official</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-primary p-8 rounded-sm" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-gold-500 mr-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="mb-6 italic">"The personal styling consultation transformed my wardrobe. I now have pieces that work together beautifully and reflect my personal style perfectly."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="images\rachel.jpg" alt="Amira Khan" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Rachel Houston</h4>
+                            <p class="text-sm text-gray-400">New Client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 bg-gold-900 bg-opacity-10">
+        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-kiona text-gold-500 mb-6">JOIN OUR WORLD</h2>
+            <p class="mb-8 max-w-2xl mx-auto">Subscribe to receive exclusive access to new collections, private events, and special offers reserved for our inner circle.</p>
+            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="Your email address" class="flex-grow bg-black bg-opacity-50 border border-gold-500 text-white py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gold-500">
+                <button type="submit" class="bg-gold-500 hover:bg-gold-600 text-black font-semibold py-3 px-8 rounded-sm transition-colors duration-300">SUBSCRIBE</button>
+            </form>
+            <p class="text-sm text-gray-400 mt-4">We respect your privacy. Unsubscribe at any time.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-kiona text-gold-500 mb-4">VISIT US</h2>
+                <div class="w-20 h-0.5 bg-gold-500 mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto">Experience Stay Relevant Fashion in person at our flagship boutique or connect with us digitally.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <h3 class="text-xl font-semibold mb-6">BOUTIQUE INFORMATION</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gold-500 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-medium mb-1">Location</h4>
+                                <p class="text-gray-400">Shop 5, SCC Junction, Plot C455 Cadastral zone 07-04 Ushafa Under St, Jigo, Abuja 901101, Federal Capital Territory</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-gold-500 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-medium mb-1">Hours</h4>
+                                <p class="text-gray-400">Monday - Saturday: 9:30AM - 8:30PM<br>Tuesday: 12PM - 8:30PM<br>Sunday: Closed</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-gold-500 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-medium mb-1">Contact</h4>
+                                <p class="text-gray-400">+234 911-099-6051<br>info@stayrelevant.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <h3 class="text-xl font-semibold mb-6">FOLLOW US</h3>
+                        <div class="flex space-x-6">
+                            <a href="#" class="social-icon text-white hover:text-gold-500"><i class="fab fa-instagram text-2xl"></i></a>
+                            <a href="#" class="social-icon text-white hover:text-gold-500"><i class="fab fa-facebook-f text-2xl"></i></a>
+                            <a href="#" class="social-icon text-white hover:text-gold-500"><i class="fab fa-twitter text-2xl"></i></a>
+                            <a href="#" class="social-icon text-white hover:text-gold-500"><i class="fab fa-pinterest-p text-2xl"></i></a>
+                            <a href="#" class="social-icon text-white hover:text-gold-500"><i class="fab fa-youtube text-2xl"></i></a>
+                            <a href="#" class="social-icon text-white hover:text-gold-500"><i class="fab fa-tiktok text-2xl"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <h3 class="text-xl font-semibold mb-6">SEND US A MESSAGE</h3>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block mb-2">Name</label>
+                                <input type="text" id="name" class="w-full bg-primary border border-gray-700 text-white py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gold-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2">Email</label>
+                                <input type="email" id="email" class="w-full bg-primary border border-gray-700 text-white py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gold-500">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full bg-primary border border-gray-700 text-white py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gold-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full bg-primary border border-gray-700 text-white py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gold-500"></textarea>
+                        </div>
+                        <button type="submit" class="bg-gold-500 hover:bg-gold-600 text-black font-semibold py-3 px-8 rounded-sm transition-colors duration-300">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-kiona text-gold-500 mb-4">ÉCLAT NOIR</h3>
+                    <p class="text-gray-400">Redefining luxury fashion with timeless elegance and modern sophistication since 2010.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">SHOP</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">New Arrivals</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">Bestsellers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">Collections</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">ABOUT</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">Our Story</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">Sustainability</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">Press</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">CUSTOMER CARE</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">Shipping & Returns</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300">Size Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Stay relevant. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300 text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300 text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-gold-500 transition-colors duration-300 text-sm">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-20 right-6 bg-gold-500 text-black p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false,
+            mirror: true
+        });
+        
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            preloader.style.pointerEvents = 'none';
+            
+            // Auto-play music (with user interaction requirement for some browsers)
+            setTimeout(() => {
+                const music = document.getElementById('bg-music');
+                const playPromise = music.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Autoplay prevented. Please interact with the page to play music.");
+                        document.getElementById('music-icon').classList.add('text-gray-500');
+                    });
+                }
+            }, 1000);
+        });
+        
+        // Toggle music function
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const icon = document.getElementById('music-icon');
+            
+            if (music.paused) {
+                music.play();
+                icon.classList.remove('text-gray-500');
+                icon.classList.add('text-gold-500');
+            } else {
+                music.pause();
+                icon.classList.remove('text-gold-500');
+                icon.classList.add('text-gray-500');
+            }
+        }
+        
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('scale-y-100');
+            mobileMenu.classList.toggle('scale-y-0');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('scale-y-100');
+                mobileMenu.classList.add('scale-y-0');
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    
+    <!-- Structured data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ClothingStore",
+        "name": "Éclat Noir",
+        "description": "Luxury fashion boutique offering exclusive high-end clothing collections with timeless elegance and modern sophistication.",
+        "url": "https://eclatnoir.com",
+        "logo": "https://eclatnoir.com/images/logo.png",
+        "telephone": "+12125550100",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "57 Golden Avenue",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10001",
+            "addressCountry": "US"
+        },
+        "openingHours": "Mo-Fr 10:00-20:00, Sa 10:00-21:00, Su 11:00-18:00",
+        "priceRange": "$$$$",
+        "image": "https://eclatnoir.com/images/storefront.jpg",
+        "sameAs": [
+            "https://www.instagram.com/eclatnoir",
+            "https://www.facebook.com/eclatnoir",
+            "https://www.pinterest.com/eclatnoir",
+            "https://www.twitter.com/eclatnoir"
+        ]
+    }
+    </script>
+</body>
+</html>
